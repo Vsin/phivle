@@ -4,14 +4,14 @@ import Blog from "./pages/Blog";
 import Portfolio from "./pages/Portfolio";
 import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/ui/navbar";
 import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <main className="flex-1">
+      <main className="p-6">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
