@@ -1,0 +1,27 @@
+name: Deploy to NFSN
+
+on:
+  push:
+    branches:
+      - main  # Change if needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to NFSN
+        run: |
+          rsync -avz --delete dist/ ${{ secrets.NFSN_USER }}@${{ secrets.NFSN_SERVER }}:/home/public/
+        env:
+          NFSN_USER: ${{ secrets.NFSN_USER }}
+          NFSN_SERVER: ${{ secrets.NFSN_SERVER }}
+
